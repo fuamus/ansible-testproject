@@ -1,0 +1,22 @@
+---
+
+- name: Populate service facts
+  service_facts:
+
+- name: Gather facts on listening ports
+  listen_ports_facts:
+
+- name: gather facts
+  ansible.builtin.set_fact:
+    HOSTNAME: "{{ inventory_hostname }}"
+    OS_DISTRIBUTION: "{{ ansible_distribution }}"
+    OS_VERSION: "{{ ansible_distribution_version }}"
+    PRODUCT_NAME: "{{ ansible_facts.product_name }}"
+    SYSTEM_VENDOR: "{{ ansible_facts.system_vendor }}"
+    SERVICES: "{{ ansible_facts.services | json_query('*') | list }}"
+    PORTS_TCP: "{{ ansible_facts.tcp_listen }}"
+    PORTS_UDP: "{{ ansible_facts.udp_listen }}"
+
+- name: show my var
+  ansible.builtin.debug:
+    msg: "{{ SERVICES }}"

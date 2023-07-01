@@ -1,0 +1,21 @@
+---
+
+fact:
+  free_space: 5
+  partition_to_check: "/var"
+  cache_file: /etc/cbk/config/cache
+  expected_os_version: "7.9"
+  expected_os_distribution: "RedHat"
+  expected_capsule_server: "ccv_RHEL86"
+  packages:
+    - ksh
+    - gzip
+  portal_parameter:
+    - fqdn
+    - platform
+
+  expected_cloud_provider:
+    gcp: "gcp,Google,Google Compute Engine"
+    vmware: "vmware,VMware Virtual Platform"
+    azr: azure
+    kvm: KVM
