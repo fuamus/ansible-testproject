@@ -1,1 +1,6 @@
 ---
+
+psql:
+  packages:
+    - postgresql
+    - postgresql-server

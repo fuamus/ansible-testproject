@@ -1,11 +1,10 @@
 ---
 
-- name: Istall psql packages
+- name: Install psql packages
   ansible.builtin.yum:
-    name:
-      - postgresql
-      - postgresql-server
+    name: "{{ item }}"
     state: present
+  loop: "{{ psql.packages }}"
 
 - name: Check if psql is initialized
   ansible.builtin.stat:
@@ -15,11 +14,8 @@
 - name: Initialize PostgreSQL
   ansible.builtin.shell: "postgresql-setup initdb"
   when: not postgres_data.stat.exists
+  notify: Start_Enable postgresql
 
-- name: Start and enable service
-  ansible.builtin.service:
-    name: postgresql
-    state: started
-    enabled: true
+
 
 

@@ -1,0 +1,5 @@
+---
+-- user
+-- password
+-- db
+-- psql -u ... -h ... -d < "select 1+1"

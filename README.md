@@ -18,3 +18,11 @@ Ansible tutorial
 
 
 ansible-playbook -i inventories/hosts dispatch.yml --limit leapp-00.fritz.box -e "fqdn=leapp-00.fritz.box" -e "platform=kvm" -e "env=DEV" -e "leapp_backend_base_url=http://lazarus.fritz.box:9090"
+
+# Run asnible roles
+```shell
+ans -lkkdaskds
+```
+
+# Vefiy
+
