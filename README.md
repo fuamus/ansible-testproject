@@ -24,5 +24,15 @@ ansible-playbook -i inventories/hosts dispatch.yml --limit leapp-00.fritz.box -e
 ans -lkkdaskds
 ```
 
-# Vefiy
+# Verfiy
 
+
+# ToDo
+- install prometheus
+- install grafana with postgresql
+- install node_exporter
+- install grafan dashbord
+
+
+# Links
+[promethesu-grafana](https://viblo.asia/p/monitoring-with-prometheus-english-chapter-1-getting-started-with-prometheus-5pPLkG6ZLRZ)
