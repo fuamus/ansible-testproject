@@ -1,0 +1,25 @@
+---
+
+- name: Istall psql packages
+  ansible.builtin.yum:
+    name:
+      - postgresql
+      - postgresql-server
+    state: present
+
+- name: Check if psql is initialized
+  ansible.builtin.stat:
+    path: "/var/lib/pgsql/data/pg_hba.conf"
+  register: postgres_data
+
+- name: Initialize PostgreSQL
+  ansible.builtin.shell: "postgresql-setup initdb"
+  when: not postgres_data.stat.exists
+
+- name: Start and enable service
+  ansible.builtin.service:
+    name: postgresql
+    state: started
+    enabled: true
+
+

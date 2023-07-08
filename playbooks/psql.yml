@@ -1,0 +1,7 @@
+---
+
+- name: postgresql demo
+  hosts: all
+  become: true
+  roles:
+    - role: psql

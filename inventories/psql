@@ -1,0 +1,5 @@
+[psql]
+f-00.fritz.box
+
+[all:vars]
+ansible_user = dilbert
