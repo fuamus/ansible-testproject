@@ -1,5 +1,12 @@
-[psql]
-f-00.fritz.box
+[all]
+f-test-00.fritz.box
+f-test-01.fritz.box
+
+[main]
+f-test-00.fritz.box
+[worker]
+f-test-00.fritz.box
 
 [all:vars]
-ansible_user = dilbert
+ansible_user = ansible
+

@@ -5,3 +5,6 @@
   become: true
   roles:
     - role: psql
+
+  vars_files:
+    - vars.yml

@@ -4,3 +4,4 @@ psql:
   packages:
     - postgresql
     - postgresql-server
+    - python3-psycopg2
