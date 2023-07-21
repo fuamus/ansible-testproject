@@ -13,3 +13,8 @@
   ansible.builtin.service:
     name: postgresql
     state: restarted
+
+- name: Stop service
+  ansible.builtin.service:
+    name: postgresql
+    state: stopped

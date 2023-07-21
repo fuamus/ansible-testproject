@@ -15,6 +15,8 @@ f-test-03.fritz.box: Ansible, Ansible Tower
 ---
 ## 1. Useful ansible commands
 ````bash
+ansible-tower-service status
+
 ansible all -i inventories/psql --list-hosts
 
 # ansible-vault
@@ -113,28 +115,13 @@ Source: https://computingforgeeks.com/install-and-configure-ansible-tower-on-cen
 ```bash
 [ansible@hostname ~]$ sudo yum update -y
 
-- name: Upgrade all packages
-  ansible.builtin.yum:
-    name: '*'
-    state: latest
-
 [ansible@hostname ~]$ sudo yum install -y epel-release
 # epel-release package is directly available in CentOS base repository, but not in RHEL repository
 [ansible@hostname ~]$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-- name: Install epel rpm from a remote repo
-  ansible.builtin.yum:
-    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    state: present
-
 [ansible@hostname ~]$ sudo yum repolist
 
 [ansible@hostname ~]$ sudo yum install -y ansible
-
-- name: Install Apache >= 2.4
-  ansible.builtin.yum:
-    name: httpd>=2.4
-    state: present
 
 [ansible@hostname ~]$ sudo yum update -y ansible
 ```

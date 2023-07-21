@@ -1,0 +1,12 @@
+---
+- name: Run SQL
+  community.postgresql.postgresql_query:
+    db: "{{ psql.db_name }}"
+    query: "SELECT version()"
+  become: true
+  become_user: postgres
+  register: sql_data
+
+- name: print
+  ansible.builtin.debug:
+    var: sql_data

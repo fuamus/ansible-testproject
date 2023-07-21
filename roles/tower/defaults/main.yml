@@ -1,0 +1,4 @@
+---
+
+ansible:
+  inventory: "/home/ansible/ansible-tower-setup-3.8.6-2/inventory"

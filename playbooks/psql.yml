@@ -1,12 +1,4 @@
 ---
-
-#- name: Install and setup postgresql
-#  hosts: psql
-#  become: true
-#  gather_facts: false
-#  roles:
-#    - role: psql
-
 - name: Setup or Remove psql with task specification
   hosts: psql
   become: true
