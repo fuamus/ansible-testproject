@@ -11,7 +11,8 @@
   hosts: psql
   become: true
   gather_facts: false
-
-  ansible.builtin.include_role:
-    name: psql
-    tasks_from: remove_psql
+  tasks:
+    - name: psql
+      include_role:
+        name: psql
+        tasks_from: remove_psql
