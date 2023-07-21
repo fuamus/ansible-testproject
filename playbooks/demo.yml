@@ -4,4 +4,4 @@
   become: true
   roles:
     - role: ping
-#    - role: fact
+    - role: fact
