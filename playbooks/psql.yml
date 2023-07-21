@@ -7,4 +7,4 @@
     - name: psql
       include_role:
         name: psql
-        tasks_from: remove_psql
+#        tasks_from: remove_psql
