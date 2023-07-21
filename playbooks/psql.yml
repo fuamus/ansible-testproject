@@ -1,6 +1,6 @@
 ---
 - name: Setup or Remove psql with task specification
-  hosts: psql
+  hosts: all
   become: true
   gather_facts: false
   tasks:
