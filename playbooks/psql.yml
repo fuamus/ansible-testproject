@@ -1,10 +1,17 @@
 ---
 
-- name: postgresql demo
-  hosts: all
-  become: true
-  roles:
-    - role: psql
+#- name: Install and setup postgresql
+#  hosts: psql
+#  become: true
+#  gather_facts: false
+#  roles:
+#    - role: psql
 
-  vars_files:
-    - vars.yml
+- name: Setup or Remove psql with task specification
+  hosts: psql
+  become: true
+  gather_facts: false
+
+  ansible.builtin.include_role:
+    name: psql
+    tasks_from: remove_psql

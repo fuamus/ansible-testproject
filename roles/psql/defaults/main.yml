@@ -4,4 +4,9 @@ psql:
   packages:
     - postgresql
     - postgresql-server
-    - python3-psycopg2
+    - python3
+    - python-psycopg2
+  db_name: testdb
+  db_user: fuamus
+  db_password: fuamus
+  backup_dir: "/psql/backups"

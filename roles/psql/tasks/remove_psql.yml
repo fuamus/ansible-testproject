@@ -1,0 +1,7 @@
+---
+- name: Remove psql packages
+  ansible.builtin.yum:
+    name:
+      - postgres\*
+    state: absent
+

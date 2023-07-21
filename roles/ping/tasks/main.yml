@@ -1,26 +1,4 @@
 ---
 
-- name: show my var
-  ansible.builtin.debug:
-    msg: "{{ ping.free_space }}"
-
-
-- name: Copy file with owner and permission, using symbolic representation
-  ansible.builtin.copy:
-    src: x.txt
-    dest: /tmp
-    mode: u=rw,g=r,o=r
-
-- name: Remove file (delete file)
-  ansible.builtin.file:
-    path: "{{ ping.my_path }}/x.txt"
-    state: absent
-
-
-- name: Template a file, using symbolic modes (equivalent to 0644)
-  ansible.builtin.template:
-    src: x.txt.j2
-    dest: /tmp/x1.txt
-
 - name: ping
-  ping:
+  ansible.builtin.ping:

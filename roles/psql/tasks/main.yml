@@ -13,21 +13,66 @@
 - name: Initialize PostgreSQL
   ansible.builtin.shell: "postgresql-setup initdb"
   when: not postgres_data.stat.exists
-  notify: Start_Enable postgresql
+  notify: Start service
 
-- name: "Create app database"
-  postgresql_db:
+- name: Start and enable service
+  ansible.builtin.service:
+    name: postgresql
+    state: started
+    enabled: true
+
+- name: "Create db"
+  community.postgresql.postgresql_db:
     state: present
-    name: "{{ db_name }}"
-  become: yes
+    name: "{{ psql.db_name }}"
+  become: true
   become_user: postgres
 
 - name: "Create db user"
-  postgresql_user:
+  community.postgresql.postgresql_user:
     state: present
-    name: "{{ db_user }}"
-    password: "{{ db_password }}"
-  become: yes
+    name: "{{ psql.db_user }}"
+    password: "{{ psql.db_password }}"
+  become: true
+  become_user: postgres
+
+- name: Allow md5 connection for db user/role
+  community.postgresql.postgresql_pg_hba:
+    dest: "~/data/pg_hba.conf"
+    contype: host
+    databases: all
+    method: md5
+    users: "{{ psql.db_user }}"
+    create: true
+  become: true
+  become_user: postgres
+  notify:
+    - Restart enable
+    - Restart service
+
+- name: Grant db user access to db
+  community.postgresql.postgresql_privs:
+    type: database
+    database: "{{ psql.db_name }}"
+    roles: "{{ psql.db_user }}"
+    privs: all
+    grant_option: false
+  become: true
+  become_user: postgres
+
+- name: Backup directory
+  ansible.builtin.file:
+    path: "{{ psql.backup_dir }}"
+    mode: 0777
+    owner: postgres
+    state: directory
+
+- name: Backup db
+  community.postgresql.postgresql_db:
+    state: dump
+    name: "{{ psql.db_name }}"
+    target: "{{ psql.backup_dir }}{{ psql.db_name }}.gz"
+  become: true
   become_user: postgres
 
 
