@@ -1,0 +1,21 @@
+---
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+
+- name: Register as user credentials into given environment (against Red Hat Satellite or Katello), and auto-subscribe.
+  community.general.redhat_subscription:
+    state: present
+    username: "{{ rhel_user }}"
+    password: "{{ rhel_passwd }}"
+    environment: Library
+    auto_attach: true
+
+- name: update yum packages
+  yum:
+    name: "*"
+    state: latest
+
+- name: Add a line to a file if the file does not exist, without passing regexp
+  ansible.builtin.lineinfile:
+    path: /tmp/testfile
